@@ -1,4 +1,5 @@
-import { useState, FormEvent } from "react";
+import { useState } from "react";
+import type { FormEvent } from "react";
 import { createTask } from "../services/taskService";
 import type { Task } from "../types/task";
 
