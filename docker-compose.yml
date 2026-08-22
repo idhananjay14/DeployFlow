@@ -1,0 +1,39 @@
+services:
+  database:
+    image: postgres:16-alpine
+    container_name: deployflow-database
+    environment:
+      POSTGRES_DB: deployflow
+      POSTGRES_USER: deployflow_user
+      POSTGRES_PASSWORD: deployflow_password
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init:/docker-entrypoint-initdb.d
+
+  backend:
+    build: ./backend
+    container_name: deployflow-backend
+    environment:
+      PORT: 3000
+      DB_HOST: database
+      DB_PORT: 5432
+      DB_NAME: deployflow
+      DB_USER: deployflow_user
+      DB_PASSWORD: deployflow_password
+    ports:
+      - "3000:3000"
+    depends_on:
+      - database
+
+  frontend:
+    build: ./frontend
+    container_name: deployflow-frontend
+    ports:
+      - "5174:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
