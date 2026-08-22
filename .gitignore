@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Build output
+dist/
+build/
+
+# Logs
+*.log
+logs/
+
+# Coverage
+coverage/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# Terraform variable files
+*.tfvars
+!*.tfvars.example
+
+# Sensitive files
+*.pem
+*.key
