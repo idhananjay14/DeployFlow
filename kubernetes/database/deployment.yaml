@@ -26,13 +26,22 @@ spec:
 
           env:
             - name: POSTGRES_DB
-              value: deployflow
+              valueFrom:
+                configMapKeyRef:
+                  name: deployflow-db-config
+                  key: DB_NAME
 
             - name: POSTGRES_USER
-              value: deployflow_user
+              valueFrom:
+                configMapKeyRef:
+                  name: deployflow-db-config
+                  key: DB_USER
 
             - name: POSTGRES_PASSWORD
-              value: deployflow_password
+              valueFrom:
+                secretKeyRef:
+                  name: deployflow-db-secret
+                  key: DB_PASSWORD
 
           volumeMounts:
             - name: database-init

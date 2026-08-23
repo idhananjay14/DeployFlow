@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: deployflow-db-config
+
+data:
+  DB_HOST: deployflow-database
+  DB_PORT: "5432"
+  DB_NAME: deployflow
+  DB_USER: deployflow_user
