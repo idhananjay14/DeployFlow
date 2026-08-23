@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: deployflow-frontend
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: deployflow-frontend
+
+  template:
+    metadata:
+      labels:
+        app: deployflow-frontend
+
+    spec:
+      containers:
+        - name: frontend
+          image: deployflow-frontend:latest
+          imagePullPolicy: Never
+
+          ports:
+            - containerPort: 80
