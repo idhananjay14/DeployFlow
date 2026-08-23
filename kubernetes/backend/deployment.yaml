@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: deployflow-backend
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: deployflow-backend
+
+  template:
+    metadata:
+      labels:
+        app: deployflow-backend
+
+    spec:
+      containers:
+        - name: backend
+          image: deployflow-backend:latest
+          imagePullPolicy: Never
+
+          ports:
+            - containerPort: 3000
+
+          env:
+            - name: PORT
+              value: "3000"
+
+            - name: DB_HOST
+              value: deployflow-database
+
+            - name: DB_PORT
+              value: "5432"
+
+            - name: DB_NAME
+              value: deployflow
+
+            - name: DB_USER
+              value: deployflow_user
+
+            - name: DB_PASSWORD
+              value: deployflow_password

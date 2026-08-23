@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: deployflow-database
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: deployflow-database
+
+  template:
+    metadata:
+      labels:
+        app: deployflow-database
+
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:16-alpine
+
+          ports:
+            - containerPort: 5432
+
+          env:
+            - name: POSTGRES_DB
+              value: deployflow
+
+            - name: POSTGRES_USER
+              value: deployflow_user
+
+            - name: POSTGRES_PASSWORD
+              value: deployflow_password
+
+          volumeMounts:
+            - name: database-init
+              mountPath: /docker-entrypoint-initdb.d/01-init.sql
+              subPath: 01-init.sql
+
+      volumes:
+        - name: database-init
+          configMap:
+            name: deployflow-db-init
