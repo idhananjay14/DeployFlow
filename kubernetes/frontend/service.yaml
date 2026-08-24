@@ -5,9 +5,12 @@ metadata:
   name: deployflow-frontend
 
 spec:
+  type: NodePort
+
   selector:
     app: deployflow-frontend
 
   ports:
     - port: 80
       targetPort: 80
+      nodePort: 30080
