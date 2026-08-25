@@ -3,6 +3,7 @@ kind: ConfigMap
 
 metadata:
   name: deployflow-db-config
+  namespace: deployflow
 
 data:
   DB_HOST: deployflow-database

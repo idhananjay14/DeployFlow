@@ -3,6 +3,7 @@ kind: Service
 
 metadata:
   name: deployflow-frontend
+  namespace: deployflow
 
 spec:
   type: NodePort

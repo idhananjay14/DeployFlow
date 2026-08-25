@@ -3,6 +3,7 @@ kind: Deployment
 
 metadata:
   name: deployflow-backend
+  namespace: deployflow
 
 spec:
   replicas: 3

@@ -14,3 +14,4 @@ data:
 kind: ConfigMap
 metadata:
   name: deployflow-db-init
+  namespace: deployflow

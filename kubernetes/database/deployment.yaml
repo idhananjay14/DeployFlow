@@ -3,6 +3,7 @@ kind: Deployment
 
 metadata:
   name: deployflow-database
+  namespace: deployflow
 
 spec:
   replicas: 1

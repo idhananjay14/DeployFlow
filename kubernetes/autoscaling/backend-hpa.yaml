@@ -3,6 +3,7 @@ kind: HorizontalPodAutoscaler
 
 metadata:
   name: deployflow-backend-hpa
+  namespace: deployflow
 
 spec:
   scaleTargetRef:
