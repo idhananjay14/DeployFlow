@@ -16,7 +16,7 @@ app.use("/tasks", tasksRouter);
 app.get("/live", (req: Request, res: Response) => {
   res.status(200).json({
     status: "ok",
-    message: "Backend is alive",
+    message: "Backend is alive - GitOps deployment test",
   });
 });
 
