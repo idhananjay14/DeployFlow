@@ -28,8 +28,8 @@ spec:
     spec:
       containers:
         - name: backend
-          image: deployflow-backend:latest
-          imagePullPolicy: Never
+          image: ghcr.io/idhananjay14/deployflow-backend:latest
+          imagePullPolicy: Always
 
           ports:
             - containerPort: 3000
