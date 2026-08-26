@@ -2,8 +2,13 @@ import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import pool from "./db";
 import tasksRouter from "./routes/tasks";
+import client from "prom-client";
 
 dotenv.config();
+
+const collectDefaultMetrics = client.collectDefaultMetrics;
+
+collectDefaultMetrics();
 
 const app = express();
 
@@ -36,6 +41,12 @@ app.get("/health", async (req: Request, res: Response) => {
       message: "Database connection failed",
     });
   }
+});
+
+app.get("/metrics", async (req: Request, res: Response) => {
+  res.set("Content-Type", client.register.contentType);
+
+  res.end(await client.register.metrics());
 });
 
 app.listen(PORT, () => {
