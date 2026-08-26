@@ -4,6 +4,8 @@ kind: Service
 metadata:
   name: deployflow-backend
   namespace: deployflow
+  labels:
+    app: deployflow-backend
 
 spec:
   selector:
