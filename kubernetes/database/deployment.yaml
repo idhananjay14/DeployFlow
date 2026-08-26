@@ -24,7 +24,7 @@ spec:
 
           ports:
             - containerPort: 5432
- 
+
           resources:
             requests:
               memory: "256Mi"
@@ -51,6 +51,19 @@ spec:
                 secretKeyRef:
                   name: deployflow-db-secret
                   key: DB_PASSWORD
+
+          readinessProbe:
+            exec:
+              command:
+                - pg_isready
+                - -U
+                - deployflow_user
+                - -d
+                - deployflow
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 6
 
           volumeMounts:
             - name: database-init

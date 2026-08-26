@@ -13,6 +13,13 @@ app.use(express.json());
 
 app.use("/tasks", tasksRouter);
 
+app.get("/live", (req: Request, res: Response) => {
+  res.status(200).json({
+    status: "ok",
+    message: "Backend is alive",
+  });
+});
+
 app.get("/health", async (req: Request, res: Response) => {
   try {
     await pool.query("SELECT 1");
