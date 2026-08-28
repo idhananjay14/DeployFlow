@@ -1,0 +1,25 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+
+metadata:
+  name: deployflow-backend-alerts
+  namespace: monitoring
+  labels:
+    release: monitoring
+
+spec:
+  groups:
+    - name: deployflow-backend
+      rules:
+        - alert: BackendRestarted
+          expr: |
+            increase(kube_pod_container_status_restarts_total{
+              namespace="deployflow",
+              container="backend"
+            }[5m]) > 0
+          for: 1m
+          labels:
+            severity: warning
+          annotations:
+            summary: "DeployFlow backend restarted"
+            description: "A DeployFlow backend container restarted in the last 5 minutes."
