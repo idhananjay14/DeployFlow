@@ -37,3 +37,4 @@ Thumbs.db
 # Sensitive files
 *.pem
 *.key
+monitoring/alerts/alertmanager-values.yaml
