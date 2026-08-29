@@ -1,0 +1,36 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+
+metadata:
+  name: deployflow-discord
+  namespace: monitoring
+  labels:
+    release: monitoring
+
+spec:
+  route:
+    receiver: discord
+    groupBy:
+      - alertname
+      - namespace
+    groupWait: 10s
+    groupInterval: 5m
+    repeatInterval: 12h
+
+  receivers:
+    - name: discord
+      discordConfigs:
+        - apiURL:
+            name: deployflow-discord-webhook
+            key: url
+          sendResolved: true
+          title: '🚨 DeployFlow Alert: {{ .CommonLabels.alertname }}'
+          message: |
+            **Status:** {{ .Status }}
+            **Severity:** {{ .CommonLabels.severity }}
+            **Namespace:** {{ .CommonLabels.namespace }}
+
+            {{ range .Alerts }}
+            **Summary:** {{ .Annotations.summary }}
+            **Description:** {{ .Annotations.description }}
+            {{ end }}
