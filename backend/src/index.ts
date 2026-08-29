@@ -10,11 +10,51 @@ const collectDefaultMetrics = client.collectDefaultMetrics;
 
 collectDefaultMetrics();
 
+const httpRequestsTotal = new client.Counter({
+  name: "http_requests_total",
+  help: "Total number of HTTP requests",
+  labelNames: ["method", "route", "status_code"],
+});
+
+const httpRequestDuration = new client.Histogram({
+  name: "http_request_duration_seconds",
+  help: "HTTP request duration in seconds",
+  labelNames: ["method", "route", "status_code"],
+});
+
 const app = express();
 
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+
+app.use((req: Request, res: Response, next) => {
+  const start = process.hrtime();
+
+  res.on("finish", () => {
+    const duration = process.hrtime(start);
+    const durationInSeconds = duration[0] + duration[1] / 1e9;
+
+    const route = req.route?.path || req.path;
+
+    httpRequestsTotal.inc({
+      method: req.method,
+      route,
+      status_code: res.statusCode,
+    });
+
+    httpRequestDuration.observe(
+      {
+        method: req.method,
+        route,
+        status_code: res.statusCode,
+      },
+      durationInSeconds,
+    );
+  });
+
+  next();
+});
 
 app.use("/tasks", tasksRouter);
 
