@@ -577,7 +577,7 @@ data:
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(rate(http_requests_total{namespace=\"deployflow\",service=\"deployflow-backend\",status_code=~\"5..\"}[5m]))",
+              "expr": "sum(rate(http_requests_total{namespace=\"deployflow\",service=\"deployflow-backend\",status_code=~\"5..\"}[5m])) or vector(0)",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
