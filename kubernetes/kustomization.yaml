@@ -14,3 +14,4 @@ resources:
   - frontend/deployment.yaml
   - frontend/service.yaml
   - monitoring/backend-servicemonitor.yaml
+  - monitoring/grafana/deployflow-dashboard.yaml
