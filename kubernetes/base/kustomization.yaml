@@ -13,3 +13,4 @@ resources:
   - autoscaling/backend-hpa.yaml
   - frontend/deployment.yaml
   - frontend/service.yaml
+  - monitoring/backend-servicemonitor.yaml
