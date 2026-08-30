@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: ghcr.io/idhananjay14/deployflow-backend:7dba3fc5ac2b6992bff2146399a1c15968dee1cb
+          image: ghcr.io/idhananjay14/deployflow-backend:b5bbf2128b1da773129de4bf5197bbe80072f302
           imagePullPolicy: Always
 
           ports:
