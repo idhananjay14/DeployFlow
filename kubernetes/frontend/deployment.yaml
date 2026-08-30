@@ -20,8 +20,8 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: deployflow-frontend:latest
-          imagePullPolicy: Never
+          image: ghcr.io/idhananjay14/deployflow-frontend:latest
+          imagePullPolicy: Always
 
           ports:
             - containerPort: 80
