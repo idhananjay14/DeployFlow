@@ -54,6 +54,8 @@ jobs:
         with:
           context: ./frontend
           load: true
+          build-args: |
+            VITE_API_URL=/api
           tags: deployflow-frontend:${{ github.sha }}
 
       - name: Scan Docker image
@@ -71,6 +73,8 @@ jobs:
         with:
           context: ./frontend
           push: true
+          build-args: |
+            VITE_API_URL=/api
           tags: |
             ghcr.io/${{ github.repository_owner }}/deployflow-frontend:latest
             ghcr.io/${{ github.repository_owner }}/deployflow-frontend:${{ github.sha }}
