@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: ghcr.io/idhananjay14/deployflow-frontend:f7639aa8a1feceb770690e42ca317f089b40a1dd
+          image: ghcr.io/idhananjay14/deployflow-frontend:627ced35b060eb63eb0a1103767782130ff7158c
           imagePullPolicy: Always
 
           securityContext:
