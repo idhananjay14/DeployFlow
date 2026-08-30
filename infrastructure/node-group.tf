@@ -8,14 +8,14 @@ resource "aws_eks_node_group" "main" {
     aws_subnet.public_b.id
   ]
 
-  instance_types = ["t3.small"]
+  instance_types = [var.instance_type]
 
   capacity_type = "ON_DEMAND"
 
   scaling_config {
-    desired_size = 3
-    min_size     = 1
-    max_size     = 3
+    desired_size = var.desired_nodes
+    min_size     = var.min_nodes
+    max_size     = var.max_nodes
   }
 
   update_config {

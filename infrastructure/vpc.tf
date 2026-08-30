@@ -1,16 +1,15 @@
 locals {
-  project = "deployflow"
-  region  = "ap-south-1"
+  project = var.project
 
   common_tags = {
     Project     = "DeployFlow"
     ManagedBy   = "Terraform"
-    Environment = "dev"
+    Environment = var.environment
   }
 }
 
 resource "aws_vpc" "main" {
-  cidr_block           = "10.20.0.0/16"
+  cidr_block           = var.vpc_cidr
   enable_dns_support   = true
   enable_dns_hostnames = true
 
