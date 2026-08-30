@@ -13,7 +13,3 @@ resources:
   - autoscaling/backend-hpa.yaml
   - frontend/deployment.yaml
   - frontend/service.yaml
-  - monitoring/backend-servicemonitor.yaml
-  - monitoring/alerts/alertmanager-discord.yaml
-  - monitoring/alerts/backend-alerts.yaml
-  - monitoring/grafana/deployflow-dashboard.yaml
