@@ -26,7 +26,7 @@ RUN mkdir -p /var/cache/nginx /var/run \
     && chown -R nginx:nginx /usr/share/nginx/html \
        /var/cache/nginx /var/run \
        /etc/nginx/conf.d \
-    && sed -i 's|pid /run/nginx.pid;|pid /tmp/nginx.pid;|' /etc/nginx/nginx.conf
+    && sed -i 's|pid        /run/nginx.pid;|pid        /tmp/nginx.pid;|' /etc/nginx/nginx.conf
 
 USER nginx
 
