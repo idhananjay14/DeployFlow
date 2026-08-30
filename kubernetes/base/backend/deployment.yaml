@@ -31,6 +31,12 @@ spec:
           image: ghcr.io/idhananjay14/deployflow-backend:195a96ff28dbd7a21a6fb35d9c7ca45c7fd85576
           imagePullPolicy: Always
 
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+
           ports:
             - containerPort: 3000
 
